@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+
 /**
-* This activity displays the result on the screen
-* and rolls the dice
-**/
+ * This activity displays the result on the screen
+ * and rolls the dice
+ */
 class MainActivity : AppCompatActivity() {
     // Create an object for dice
     private var dice: Dice = Dice(6)
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val rollButton: Button = findViewById(R.id.button)
         result = findViewById(R.id.imageView)
+        rollDice()
         rollButton.setOnClickListener {
             rollDice()
         }
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     // Function which rolls the dice
     private fun rollDice() {
         val num = dice.roll()
+        // set appropriate image based on dice number
         val diceImage = when (num) {
             1 -> R.drawable.dice_1
             2 -> R.drawable.dice_2
@@ -42,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 /**
  * This class has all the logic for rolling the dice
  * and stores the number of sides in it
- **/
+ */
 class Dice(private val sides: Int) {
     fun roll(): Int {
         return (1..sides).random()
